@@ -6,6 +6,7 @@ import Footer from "./layouts/Footer/index";
 import Header from "./layouts/Header/index";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register/index";
 import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Switch>
 
       {/* remove Footer on these routes */}

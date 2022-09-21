@@ -5,8 +5,9 @@ import { authRoute } from "../../api";
 import Logo from "../../assets/layout/logo.png";
 import { Container, CardContainer } from "./styles";
 
-function Login() {
+function Register() {
   // states
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ function Login() {
     setError(false);
     setLoading(true);
 
-    const response = await authRoute.login(email, password);
+    const response = await authRoute.register(name, email, password);
 
     if (response.error) {
       setError(true);
@@ -33,7 +34,7 @@ function Login() {
         <div className="logo-area">
           <img src={Logo} alt="LinkedIn" title="LinkedIn" />
         </div>
-        <h1>Login</h1>
+        <h1>Cadastre-se</h1>
         <form>
           {error && (
             <Alert
@@ -42,6 +43,18 @@ function Login() {
               type="error"
             />
           )}
+
+          <div className="input-area">
+            <Input
+              style={{ height: 40 }}
+              name="name"
+              placeholder="Seu nome"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </div>
 
           <div className="input-area">
             <Input
@@ -68,7 +81,7 @@ function Login() {
           </div>
           <div className="btn-area">
             <Button disabled={loading} type="primary" onClick={handleSubmit}>
-              {loading ? "Carregando" : "Login"}
+              {loading ? "Carregando" : "Registre-se"}
             </Button>
           </div>
 
@@ -78,7 +91,7 @@ function Login() {
         </form>
         <div className="register">
           <p>
-            Não tem uma conta? <a href="/register">Registre-se</a>
+            já possui uma conta? <a href="/register">faça login</a>
           </p>
         </div>
       </CardContainer>
@@ -86,4 +99,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
