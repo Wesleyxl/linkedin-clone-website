@@ -24,7 +24,7 @@ function Header() {
 
         <ul className="links">
           <li>
-            <NavLink to="/feed">
+            <NavLink to="/">
               <i className="fa-solid fa-signal" />
               FEED
             </NavLink>
@@ -61,15 +61,17 @@ function Header() {
 
         <ul>
           <li>
-            <div className="profile">
-              <div className="img">
-                <img src={Profile} alt="Wesley Alves" title="Wesley Alves" />
+            <a href="/profile">
+              <div className="profile">
+                <div className="img">
+                  <img src={Profile} alt="Wesley Alves" title="Wesley Alves" />
+                </div>
+                <div className="description">
+                  <p>Bom dia</p>
+                  <h1>Wesley Alves</h1>
+                </div>
               </div>
-              <div className="description">
-                <p>Bom dia</p>
-                <h1>Wesley Alves</h1>
-              </div>
-            </div>
+            </a>
           </li>
 
           <li>

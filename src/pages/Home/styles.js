@@ -1,10 +1,15 @@
+import { Card } from "antd";
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
-  background: #fff;
 `;
 
-export { Container };
+const CardContainer = styled(Card)`
+  background: #fff;
+  border-radius: 5px;
+`;
+
+export { Container, CardContainer };

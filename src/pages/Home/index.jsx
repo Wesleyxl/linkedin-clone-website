@@ -1,11 +1,28 @@
+import { Row, Col } from "antd";
 import React from "react";
 
-import { Container } from "./styles";
+import { CardContainer, Container } from "./styles";
 
 function Home() {
   return (
     <Container>
-      <h1>Home</h1>
+      <Row>
+        <Col span={5}>
+          <CardContainer>
+            <h1>Card left</h1>
+          </CardContainer>
+        </Col>
+        <Col span={12} style={{ margin: "0 10px" }}>
+          <CardContainer>
+            <h1>Center</h1>
+          </CardContainer>
+        </Col>
+        <Col span={5}>
+          <CardContainer>
+            <h1>Card right</h1>
+          </CardContainer>
+        </Col>
+      </Row>
     </Container>
   );
 }

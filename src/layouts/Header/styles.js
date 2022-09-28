@@ -59,6 +59,11 @@ export const Container = styled.header`
           }
         }
 
+        .active {
+          color: #00acff;
+          font-weight: bold;
+        }
+
         .profile {
           width: 330px;
           height: 100%;
@@ -83,6 +88,7 @@ export const Container = styled.header`
               opacity: 0.7;
               margin: 0;
               padding: 0;
+              color: #000;
             }
           }
         }
