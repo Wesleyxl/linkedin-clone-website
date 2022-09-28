@@ -11,7 +11,16 @@ export default createGlobalStyle`
   body {
     padding-top: 100px;
     background: #e5e5e5;
-    color: #000;
+    color: #212121;
     font-family: 'Roboto', sans-serif;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
   }
 `;

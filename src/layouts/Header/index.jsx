@@ -24,7 +24,7 @@ function Header() {
 
         <ul className="links">
           <li>
-            <NavLink to="/">
+            <NavLink to="/" end>
               <i className="fa-solid fa-signal" />
               FEED
             </NavLink>
