@@ -23,4 +23,10 @@ export default createGlobalStyle`
   li {
     list-style: none;
   }
+
+  button, a {
+    :hover {
+      cursor: pointer;
+    }
+  }
 `;

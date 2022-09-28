@@ -7,13 +7,11 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const CardContainer = styled(Card)`
+const PagesContainerList = styled(Card)`
   background: #fff;
   border-radius: 16px;
   margin: 8px 8px;
-`;
 
-const PagesContainerList = styled.div`
   nav {
     ul {
       width: 100%;
@@ -84,7 +82,11 @@ const PagesContainerList = styled.div`
   }
 `;
 
-const PeopleSuggestionList = styled.div`
+const PeopleSuggestionList = styled(Card)`
+  background: #fff;
+  border-radius: 16px;
+  margin: 8px 8px;
+
   .title {
     font-weight: bold;
     color: #000;
@@ -146,4 +148,101 @@ const PeopleSuggestionList = styled.div`
   }
 `;
 
-export { Container, CardContainer, PagesContainerList, PeopleSuggestionList };
+const ProfileContainer = styled(Card)`
+  background: #fff;
+  border-radius: 16px;
+  margin: 8px 8px;
+
+  .profile {
+    margin: 8px 8px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+    }
+
+    .description {
+      line-height: 1, 3;
+      margin-left: 16px;
+
+      p {
+        font-weight: bold;
+        color: #000;
+        font-size: 16px;
+        margin-bottom: 0;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+`;
+
+const CreatePostContainer = styled(Card)`
+  background: #fff;
+  border-radius: 16px;
+  margin: 8px 8px 24px;
+
+  .write-text {
+    width: 100%;
+
+    button {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+
+      img {
+        width: 24px;
+        margin-right: 24px;
+      }
+
+      p {
+        margin-bottom: 0px;
+        font-size: 16px;
+        color: #666;
+      }
+    }
+  }
+
+  nav {
+    width: 100%;
+    ul {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      li {
+        width: 100%;
+        max-width: 87px;
+
+        button {
+          width: 100%;
+          border: none;
+          background: none;
+          font-size: 16px;
+          color: #666;
+
+          i {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+`;
+
+export {
+  Container,
+  PagesContainerList,
+  PeopleSuggestionList,
+  ProfileContainer,
+  CreatePostContainer,
+};
