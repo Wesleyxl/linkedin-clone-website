@@ -239,10 +239,59 @@ const CreatePostContainer = styled(Card)`
   }
 `;
 
+const MenuConfigContainer = styled(Card)`
+  background: #fff;
+  border-radius: 16px;
+  margin: 8px 8px 24px;
+
+  nav {
+    width: 100%;
+
+    ul {
+      width: 100%;
+
+      li {
+        width: 100%;
+        margin: 12px 0;
+        display: flex;
+        justify-content: space-between;
+
+        a {
+          font-size: 16px;
+          color: #666;
+
+          :hover {
+            font-weight: bold;
+          }
+
+          i {
+            margin-right: 16px;
+          }
+        }
+
+        div {
+          width: 36px;
+          height: 20px;
+          background: #00acff;
+          color: #fff;
+          font-weight: bold;
+          font-size: 11px;
+          text-align: center;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+`;
+
 export {
   Container,
   PagesContainerList,
   PeopleSuggestionList,
   ProfileContainer,
   CreatePostContainer,
+  MenuConfigContainer,
 };

@@ -22,6 +22,8 @@ function Login() {
     if (response.error) {
       setError(true);
       setLoading(false);
+    } else {
+      const { user, access_token } = response;
     }
 
     setLoading(false);

@@ -17,6 +17,7 @@ import {
   PeopleSuggestionList,
   ProfileContainer,
   CreatePostContainer,
+  MenuConfigContainer,
 } from "./styles";
 
 function Home() {
@@ -62,6 +63,50 @@ function Home() {
               </a>
             </div>
           </PagesContainerList>
+
+          <MenuConfigContainer>
+            <nav>
+              <ul>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-regular fa-circle-play" />
+                    Learning
+                  </a>
+                </li>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-solid fa-list" />
+                    Insights
+                  </a>
+                </li>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-solid fa-users" />
+                    Find Colleagues
+                  </a>
+                </li>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-regular fa-bookmark" />
+                    Bookmarks
+                  </a>
+                </li>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-solid fa-gamepad" />
+                    Gaming
+                  </a>
+                  <div>new</div>
+                </li>
+                <li>
+                  <a href="/" alt="" title="">
+                    <i className="fa-solid fa-gears" />
+                    Settings
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </MenuConfigContainer>
         </Col>
 
         <Col span={12}>

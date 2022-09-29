@@ -2,20 +2,21 @@ import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
 function PrivateRoute() {
+  // get token
   const token = localStorage.getItem("access_token");
 
   if (!token || token === "" || token === undefined) {
-    return <Navigate to="/logout" />;
+    return <Navigate to="/login" />;
   }
 
   return <Outlet />;
 }
 
 function UnPrivateRoute() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
 
   if (!token || token === "" || token === undefined) {
-    <Outlet />;
+    return <Outlet />;
   }
 
   return <Navigate to="/" />;

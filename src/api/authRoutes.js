@@ -1,4 +1,4 @@
-import { apiFetchPublicPost } from "./methods";
+import { apiFetchPublicPost, apiFetchGet } from "./methods";
 
 const authRoutes = {
   login: async (email, password) => {
@@ -16,6 +16,12 @@ const authRoutes = {
       email,
       password,
     });
+
+    return response;
+  },
+
+  me: async () => {
+    const response = await apiFetchGet("/auth/me");
 
     return response;
   },

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes as Switch, Route } from "react-router-dom";
 import Header from "./layouts/Header/index";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Register from "./pages/Register/index";
 import { PrivateRoute, UnPrivateRoute } from "./services/Route";
 import GlobalStyles from "./styles/GlobalStyles";
@@ -24,12 +25,12 @@ function App() {
       <Switch>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/logout/" element={<h1>logout</h1>} />
+          <Route path="/logout" element={<Logout />} />
         </Route>
 
         <Route path="/" element={<UnPrivateRoute />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
         </Route>
       </Switch>
     </BrowserRouter>
