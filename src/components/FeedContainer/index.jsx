@@ -1,6 +1,7 @@
-import { Divider, Input } from "antd";
+import { Divider, Input, Comment } from "antd";
 import React, { useState } from "react";
 
+import { commentRoutes } from "../../api/commentRoutes";
 import MoreSquare from "../../assets/feed/more-square.svg";
 import DefaultImage from "../../assets/layout/user-default.png";
 import { Container, ModalComments } from "./styles";
@@ -8,13 +9,22 @@ import { Container, ModalComments } from "./styles";
 function FeedContainer({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newComment, setNewComment] = useState("");
+  const [publishComment, setPublishComment] = useState(false);
+  const [comments, setComments] = useState([]);
 
-  const showModal = () => {
+  const showModal = async () => {
+    const response = await commentRoutes.showAll(data.id);
+    setComments(response);
     setIsModalOpen(true);
   };
 
   const handleOk = () => {
-    setIsModalOpen(false);
+    if (newComment === "") {
+      setPublishComment(false);
+      setIsModalOpen(false);
+    } else {
+      setPublishComment(true);
+    }
   };
 
   const handleCancel = () => {
@@ -70,26 +80,22 @@ function FeedContainer({ data }) {
                   onOk={handleOk}
                   onCancel={handleCancel}
                 >
-                  <article>
-                    <div className="img-area">
-                      <img src={DefaultImage} alt="" />
-                    </div>
-                    <div className="text-area">
-                      <div className="title">
-                        <p>Elon Musk</p>
-                        <span>30/09/2022</span>
+                  {comments.map((comment) => (
+                    <article key={comment.id}>
+                      <div className="img-area">
+                        <img src={comment.user.image || DefaultImage} alt="" />
                       </div>
-                      <div className="text">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Soluta eveniet aut consectetur error, modi
-                          numquam deserunt delectus doloribus perspiciatis,
-                          optio fugit mollitia minus commodi amet, laboriosam
-                          quos recusandae. Rem, nobis?
-                        </p>
+                      <div className="text-area">
+                        <div className="title">
+                          <p>{comment.user.name}</p>
+                          <span>{comment.updatedAt}</span>
+                        </div>
+                        <div className="text">
+                          <p>{comment.text}</p>
+                        </div>
                       </div>
-                    </div>
-                  </article>
+                    </article>
+                  ))}
                   <Input.TextArea
                     id="comments"
                     name="comments"

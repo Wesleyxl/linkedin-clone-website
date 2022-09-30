@@ -55,7 +55,7 @@ const apiFetchGet = async (endpoint) => {
   return json;
 };
 
-// GET
+// POST
 const apiFetchPost = async (endpoint, body = {}) => {
   const response = await fetch(`${BASE_URL + endpoint}`, {
     method: "POST",
