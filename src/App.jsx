@@ -15,13 +15,10 @@ function App() {
     <BrowserRouter>
       <GlobalStyles />
 
-      {/* remove Header on these routes */}
-      {window.location.pathname !== "/login" ? (
-        window.location.pathname !== "/register" ? (
-          <Header />
-        ) : null
-      ) : null}
-
+      {window.location.pathname === "/login" ||
+      window.location.pathname === "/register" ? null : (
+        <Header />
+      )}
       <Switch>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />

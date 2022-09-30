@@ -10,6 +10,7 @@ function Register() {
   // states
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [career, setCareer] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState(false);
@@ -36,9 +37,10 @@ function Register() {
         setError(true);
         setLoading(false);
       } else {
-        const { access_token } = response;
+        const { user, access_token } = response;
 
         localStorage.setItem("access_token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
 
         navigate("/");
       }
@@ -83,6 +85,18 @@ function Register() {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
+              }}
+            />
+          </div>
+
+          <div className="input-area">
+            <Input
+              style={{ height: 40 }}
+              name="career"
+              placeholder="your career"
+              value={career}
+              onChange={(e) => {
+                setCareer(e.target.value);
               }}
             />
           </div>

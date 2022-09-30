@@ -38,7 +38,7 @@ const apiFetchPublicPost = async (endpoint, body = {}) => {
 };
 
 // GET
-const apiFetchGet = async (endpoint, body = {}) => {
+const apiFetchGet = async (endpoint) => {
   const response = await fetch(`${BASE_URL + endpoint}`, {
     method: "GET",
     headers: {
@@ -46,7 +46,6 @@ const apiFetchGet = async (endpoint, body = {}) => {
       "Content-Type": "application/json",
       Authorization: localStorage.getItem("access_token"),
     },
-    body: JSON.stringify(body),
   });
 
   const json = await response.json();

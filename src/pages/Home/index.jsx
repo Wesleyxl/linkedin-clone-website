@@ -1,5 +1,7 @@
 import { Row, Col, Button, Divider } from "antd";
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import { feedRoutes } from "../../api/feedRoutes";
 
 // images
 import DylanImg from "../../assets/feed/dylan-image.png";
@@ -8,7 +10,7 @@ import GoogleImg from "../../assets/feed/google.png";
 import RyanImg from "../../assets/feed/ryan-image.png";
 import SteveImg from "../../assets/feed/steve-image.png";
 import TeslaImg from "../../assets/feed/tesla.png";
-import WesleyImg from "../../assets/feed/wesley-logo.png";
+import DefaultImage from "../../assets/layout/user-default.png";
 import FeedContainer from "../../components/FeedContainer";
 // end images
 import {
@@ -21,16 +23,33 @@ import {
 } from "./styles";
 
 function Home() {
+  // states
+  const [feeds, setFeeds] = useState([]);
+  const me = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    const handleGetFeeds = async () => {
+      const response = await feedRoutes.getAll();
+      setFeeds(response);
+    };
+
+    handleGetFeeds();
+  }, []);
+
   return (
     <Container>
       <Row>
         <Col span={6}>
           <ProfileContainer>
             <div className="profile">
-              <img src={WesleyImg} alt="Wesley Alves" title="Wesley Alves" />
+              <img
+                src={me.image || DefaultImage}
+                alt="Wesley Alves"
+                title="Wesley Alves"
+              />
               <div className="description">
-                <p>Wesley Alves</p>
-                <span>Programador</span>
+                <p>{me.name}</p>
+                <span>{me.career}</span>
               </div>
             </div>
           </ProfileContainer>
@@ -155,7 +174,11 @@ function Home() {
           </CreatePostContainer>
 
           {/* Feeds */}
-          <FeedContainer />
+          {feeds.length >= 1 ? (
+            feeds.map((feed) => <FeedContainer key={feed.id} data={feed} />)
+          ) : (
+            <h1>Loading</h1>
+          )}
         </Col>
 
         <Col span={6}>

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Logo from "../../assets/layout/logo-mini.png";
-import Profile from "../../assets/layout/wesley-logo.png";
+import DefaultImage from "../../assets/layout/user-default.png";
 import { Container } from "./styles";
 
 function Header() {
+  const me = JSON.parse(localStorage.getItem("user"));
   return (
     <Container>
       <nav>
@@ -64,11 +65,15 @@ function Header() {
             <a href="/profile">
               <div className="profile">
                 <div className="img">
-                  <img src={Profile} alt="Wesley Alves" title="Wesley Alves" />
+                  <img
+                    src={me.image || DefaultImage}
+                    alt={me.name}
+                    title={me.name}
+                  />
                 </div>
                 <div className="description">
                   <p>Bom dia</p>
-                  <h1>Wesley Alves</h1>
+                  <h1>{me.name}</h1>
                 </div>
               </div>
             </a>

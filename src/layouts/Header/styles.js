@@ -77,7 +77,6 @@ export const Container = styled.header`
           }
 
           .description {
-            width: 100%;
             h1 {
               margin: 0;
               padding: 0;

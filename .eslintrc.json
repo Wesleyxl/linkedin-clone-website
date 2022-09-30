@@ -16,7 +16,9 @@
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "no-return-assign": "off",
+    "react/prop-types": "off",
     "camelcase": "off",
+
     "import-helpers/order-imports": [
       "warn",
       {

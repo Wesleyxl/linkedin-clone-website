@@ -1,5 +1,6 @@
 import { Alert, Button, Checkbox, Input, Spin } from "antd";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { authRoute } from "../../api";
 import Logo from "../../assets/layout/logo.png";
@@ -11,6 +12,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   // submit
   const handleSubmit = async () => {
@@ -24,6 +27,11 @@ function Login() {
       setLoading(false);
     } else {
       const { user, access_token } = response;
+
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      navigate("/");
     }
 
     setLoading(false);

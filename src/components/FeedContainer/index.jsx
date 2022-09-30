@@ -1,20 +1,38 @@
-import { Divider } from "antd";
-import React from "react";
+import { Divider, Input } from "antd";
+import React, { useState } from "react";
 
-import ElonImg from "../../assets/feed/img-elon.png";
 import MoreSquare from "../../assets/feed/more-square.svg";
-import PostImg from "../../assets/feed/post-img-1.png";
-import { Container } from "./styles";
+import DefaultImage from "../../assets/layout/user-default.png";
+import { Container, ModalComments } from "./styles";
 
-function FeedContainer() {
+function FeedContainer({ data }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newComment, setNewComment] = useState("");
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <Container>
       <div className="header">
         <div className="left">
-          <img src={ElonImg} alt="Elon Musk" title="Elon Musk" />
+          <img
+            src={data.user.image || DefaultImage}
+            alt={data.user.name}
+            title={data.user.name}
+          />
           <div className="description">
-            <p>Elon Musk</p>
-            <span>CEO of SpaceX</span>
+            <p>{data.user.name}</p>
+            <span>{data.user.career}</span>
           </div>
         </div>
         <div className="right">
@@ -25,18 +43,14 @@ function FeedContainer() {
       </div>
 
       <div className="text-area">
-        <p>
-          You have to match the convenience of the gasoline car in order for
-          people to buy an electric car. In order to have clean air in cities,
-          you have to go electric. You should not show somebody something very
-          cool and then not do it. At Tesla, any prototype that is shown to
-          customers, the production must be better.
-        </p>
+        <p>{data.text}</p>
       </div>
 
-      <div className="img-area">
-        <img src={PostImg} alt="Elon Musk" />
-      </div>
+      {data.image && (
+        <div className="img-area">
+          <img src={data.image} alt={data.user.name} title={data.user.name} />
+        </div>
+      )}
 
       <Divider style={{ margin: "8px 0 16px" }} />
 
@@ -50,7 +64,41 @@ function FeedContainer() {
                 </button>
               </li>
               <li>
-                <button type="button">
+                <ModalComments
+                  title="Comments"
+                  open={isModalOpen}
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                >
+                  <article>
+                    <div className="img-area">
+                      <img src={DefaultImage} alt="" />
+                    </div>
+                    <div className="text-area">
+                      <div className="title">
+                        <p>Elon Musk</p>
+                        <span>30/09/2022</span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Soluta eveniet aut consectetur error, modi
+                          numquam deserunt delectus doloribus perspiciatis,
+                          optio fugit mollitia minus commodi amet, laboriosam
+                          quos recusandae. Rem, nobis?
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                  <Input.TextArea
+                    id="comments"
+                    name="comments"
+                    placeholder="Fazer um comentário"
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                  />
+                </ModalComments>
+                <button onClick={showModal} type="button">
                   <i className="fa-regular fa-comment-dots" />
                 </button>
               </li>
