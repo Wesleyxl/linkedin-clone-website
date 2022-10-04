@@ -2,7 +2,6 @@
 import React from "react";
 import { BrowserRouter, Routes as Switch, Route } from "react-router-dom";
 
-import Header from "./layouts/Header/index";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -14,11 +13,6 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyles />
-
-      {window.location.pathname === "/login" ||
-      window.location.pathname === "/register" ? null : (
-        <Header />
-      )}
       <Switch>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />

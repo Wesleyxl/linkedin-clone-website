@@ -13,6 +13,7 @@ import TeslaImg from "../../assets/feed/tesla.png";
 import DefaultImage from "../../assets/layout/user-default.png";
 import FeedContainer from "../../components/FeedContainer";
 // end images
+import Header from "../../layouts/Header/index";
 import {
   Container,
   PagesContainerList,
@@ -38,6 +39,7 @@ function Home() {
 
   return (
     <Container>
+      <Header />
       <Row>
         <Col span={6}>
           <ProfileContainer>

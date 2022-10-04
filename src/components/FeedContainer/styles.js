@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Container = styled(Card)`
   background: #fff;
   border-radius: 16px;
-  margin: 8px 8px;
+  margin: 8px 8px 32px;
 
   .header {
     width: 100%;
