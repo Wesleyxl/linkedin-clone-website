@@ -187,6 +187,17 @@ const CreatePostContainer = styled(Card)`
   border-radius: 16px;
   margin: 8px 8px 24px;
 
+  .img-file {
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: #666;
+
+    i {
+      margin-right: 8px;
+    }
+  }
   .write-text {
     width: 100%;
 

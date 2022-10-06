@@ -1,7 +1,7 @@
 import { apiFetchGet, apiFetchPost } from "./methods";
 
 const commentRoutes = {
-  create: async (text, publication_id) => {
+  create: async (publication_id, text) => {
     const response = await apiFetchPost("/comments", { publication_id, text });
 
     return response;

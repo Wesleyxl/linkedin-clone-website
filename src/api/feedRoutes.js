@@ -1,7 +1,7 @@
 import { apiFetchPost, apiFetchGet } from "./methods";
 
 const feedRoutes = {
-  createFeed: async (text, image) => {
+  createFeed: async (text, image = "") => {
     const response = apiFetchPost("/feeds", { text, image });
 
     return response;

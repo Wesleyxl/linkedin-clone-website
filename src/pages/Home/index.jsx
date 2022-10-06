@@ -1,7 +1,8 @@
-import { Row, Col, Button, Divider } from "antd";
-import React, { useState, useEffect } from "react";
+import { Row, Col, Button, Divider, Modal } from "antd";
+import TextArea from "antd/lib/input/TextArea";
+import React, { useState, useEffect, useRef } from "react";
 
-import { feedRoutes } from "../../api/feedRoutes";
+import { feedRoute } from "../../api";
 
 // images
 import DylanImg from "../../assets/feed/dylan-image.png";
@@ -26,16 +27,42 @@ import {
 function Home() {
   // states
   const [feeds, setFeeds] = useState([]);
+  const [textFeed, setTextFeed] = useState("");
   const me = JSON.parse(localStorage.getItem("user"));
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleGetFeeds = async () => {
-      const response = await feedRoutes.getAll();
+      const response = await feedRoute.getAll();
       setFeeds(response);
     };
 
     handleGetFeeds();
   }, []);
+
+  // create feed
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = async () => {
+    if (!textFeed || textFeed === "") {
+      setIsModalOpen(false);
+    } else {
+      const response = await feedRoute.createFeed(textFeed);
+      const feedResponse = await feedRoute.getAll();
+
+      console.log(response);
+
+      setFeeds(feedResponse);
+      setTextFeed("");
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Container>
@@ -133,7 +160,7 @@ function Home() {
         <Col span={12}>
           <CreatePostContainer>
             <div className="write-text">
-              <button type="button">
+              <button type="button" onClick={showModal}>
                 <img
                   src={PencilIcon}
                   alt="Write something"
@@ -142,6 +169,23 @@ function Home() {
                 <p>Write something ...</p>
               </button>
             </div>
+            <Modal
+              title="Create Feed"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <TextArea
+                id="text"
+                name="text"
+                placeholder="Write something"
+                value={textFeed}
+                onChange={(e) => setTextFeed(e.target.value)}
+                rows={5}
+                style={{ border: "none" }}
+              />
+              {/* <input type="file" name="file" id="file" multiple ref={} /> */}
+            </Modal>
 
             <Divider style={{ margin: "8px 0 16px" }} />
 

@@ -1,7 +1,8 @@
-import { Divider, Input, Comment } from "antd";
+import { Divider, Input } from "antd";
 import React, { useState } from "react";
 
 import { commentRoutes } from "../../api/commentRoutes";
+import { commentRoute } from "../../api/index";
 import MoreSquare from "../../assets/feed/more-square.svg";
 import DefaultImage from "../../assets/layout/user-default.png";
 import { Container, ModalComments } from "./styles";
@@ -9,7 +10,6 @@ import { Container, ModalComments } from "./styles";
 function FeedContainer({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newComment, setNewComment] = useState("");
-  const [publishComment, setPublishComment] = useState(false);
   const [comments, setComments] = useState([]);
 
   const showModal = async () => {
@@ -18,12 +18,20 @@ function FeedContainer({ data }) {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
     if (newComment === "") {
-      setPublishComment(false);
       setIsModalOpen(false);
     } else {
-      setPublishComment(true);
+      const response = await commentRoute.create(data.id, newComment);
+
+      if (response.error) {
+        setNewComment("");
+        setIsModalOpen(false);
+      } else {
+        const restartComments = await commentRoutes.showAll(data.id);
+        setComments(restartComments);
+        setNewComment("");
+      }
     }
   };
 
